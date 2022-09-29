@@ -6,13 +6,6 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
-    """
-    This function processes song files and stores data into songs and artists tables
-
-    Parameters:
-        cur (cursor): psycopg2 cursor connection to postgres
-        filepath (string): song file path
-    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -69,15 +62,6 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
-    """
-    Function to process all the data set files and store data into the database
-    
-    Parameters:
-        cur: psycopg2 cursor
-        conn: psycopg2 connection object
-        filepath (string): path where the data set files are located
-        func (function): function to execute (process_song_file or process_log_file)
-    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -102,11 +86,6 @@ def main():
 
     process_data(cur, conn, filepath='data/song_data', func=process_song_file)
     process_data(cur, conn, filepath='data/log_data', func=process_log_file)
-
-    cur.execute("select * from songplays WHERE song_id is not null and artist_id is not null")
-    results = cur.fetchall()
-    print("Result of `select * from songplays WHERE song_id is not null and artist_id is not null`:")
-    print(results)
 
     conn.close()
 
