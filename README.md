@@ -45,11 +45,13 @@ It is important to follow the steps below in running the python scripts in this 
 * ```sql_queries.py``` contains all the sql queries, and is imported into ```create_tables.py```, ```etl.py``` and ```etl.ipynb```.
 
 ## **Database Schema and ETL**
-For this project, the star schema is utilized to model the data and it is preferred based on the following reasons:
+For this project, the star schema (as seen below) is utilized to model the data and it is preferred based on the following reasons:
 
 1. It is simple to understand and build
 2. It eliminates the need for complex joins when querying data from the database.
 3. It optimizes storage and query efficiency.
+
+![](Capture.PNG)
 
 For the *ETL* process, tables are created in line with the schema design. Running the ```etl.py``` script populates the tables from the ```songs``` and ```log``` datasets
 
